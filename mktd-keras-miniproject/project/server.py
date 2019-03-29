@@ -5,7 +5,12 @@ import tensorflow as tf
 from werkzeug.utils import secure_filename
 
 from exercices.models import Models
+from exercices.dataset import Datasets, Tensors
+
 import keras
+import numpy as np
+import scipy
+import cv2
 
 app = Flask(__name__)
 
@@ -26,8 +31,18 @@ def predict():
     file = request.files['input']
     filename = '/tmp/uploads/' + secure_filename(file.filename)
     os.makedirs(os.path.dirname(filename), exist_ok=True)
+    file.save(filename)
+    oriimg = cv2.imread(filename)
+    newimg = cv2.resize(oriimg, (128, 128))
+    cv2.imwrite(filename, newimg)
+    print("   ... img resized")
 
-    result = -1  # category index (0-9)
+    x = Tensors.from_image(filename)
+
+    yy = Models.predict(model, x)
+    print("   ... prediction OK")
+
+    result = np.argmax(yy)  # category index (0-9)
 
     return str(result)
 
