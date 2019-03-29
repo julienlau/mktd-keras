@@ -21,5 +21,5 @@ def test_show_history():
 
     # a figure should pop (showing two curves)
 
-test_show_images()
+#test_show_images()
 test_show_history()

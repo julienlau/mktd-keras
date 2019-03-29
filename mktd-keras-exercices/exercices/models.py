@@ -42,9 +42,9 @@ class Models(object):
     def load_model(path: str):
         filename = os.path.join(path, 'model.h5')
 
-        # TODO: use keras to load the model from its path
+        # use keras to load the model from its path
         # https://keras.io/getting-started/faq/#how-can-i-save-a-keras-model
-        loaded_model = ('do', 'something', 'with', filename)
+        loaded_model = load_model(filename)
 
         return loaded_model
 
@@ -62,9 +62,9 @@ class Models(object):
             #  TODO: use Convolutional Neural Network (Conv2D) to boost the training
             # ---> https://keras.io/layers/convolutional/
 
-            # Conv2D(filters=8, kernel_size=(3, 3), padding='same'),
-            # Activation(activation='relu'),
-            # BatchNormalization(),
+            Conv2D(filters=8, kernel_size=(3, 3), padding='same'),
+            Activation(activation='relu'),
+            BatchNormalization(),
 
             Flatten(),
 

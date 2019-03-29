@@ -32,7 +32,7 @@ class Tensors(object):
 
     @staticmethod
     def reshape(array: np.ndarray, shape: Tuple[int, int, int]) -> np.ndarray:
-        # TODO : use numpy reshape function
+        # use numpy reshape function
         # https://docs.scipy.org/doc/numpy/reference/generated/numpy.reshape.html
         import numpy as np
         return np.reshape(array, shape)
@@ -94,7 +94,7 @@ class Datasets(object):
     @staticmethod
     def split_dataset(x: np.ndarray, y: np.ndarray, test_size=0.1):
         assert x.shape[0] == y.shape[0]
-        # TODO : use sklearn.train_test_split to split a dataset in two datasets (training and validation)
+        # use sklearn.train_test_split to split a dataset in two datasets (training and validation)
         # https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.train_test_split.html
 
         x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=test_size, random_state=None)
