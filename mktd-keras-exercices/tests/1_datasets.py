@@ -46,7 +46,10 @@ def test_normalization():
 
 
 def test_dataset_split():
-    (_, _), (x, y) = Datasets.mnist()
+    from keras.datasets import mnist
+
+    (_, _), (x, y) = mnist.load_data()
+
     (x_train, x_val), (y_train, y_val) = Datasets.split_dataset(x, y)
 
     assert x_train.shape == (9000, 28, 28)
