@@ -87,7 +87,8 @@ def test_convolutional_network():
 
 
 def dataset_preparation():
-    sample_provider = Datasets.fashion_mnist()
+    # fashion_mnist or mnist ???
+    sample_provider = Datasets.mnist()
     x = [_[0] for _ in sample_provider()]
     y = [_[1] for _ in sample_provider()]
 
@@ -98,7 +99,7 @@ def dataset_preparation():
     y = y[::n]
 
     train, validation = Datasets.split_dataset(np.array(x), np.array(y))
-
+# shuffle ???
     # data augmentation : each image is rotated / shifted / scaled
     train = ImageDataGenerator(
         rescale=1. / 255,
@@ -109,7 +110,7 @@ def dataset_preparation():
         zoom_range=0.08,
     ).flow(
         train,
-        shuffle=True,
+        shuffle=False,
         batch_size=32
     )
 

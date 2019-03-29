@@ -77,24 +77,37 @@ class Datasets(object):
 
     @staticmethod
     def fashion_mnist():
-        # get the fashion MNIST dataset from keras and create a generator from it (copy mnist function above)
+        # DONE : get the fashion MNIST dataset from keras and create a generator from it (copy mnist function above)
         # https://keras.io/datasets/
-        from keras.datasets import fashion_mnist
-        (x_train, y_train), (x_test, y_test) = fashion_mnist.load_data()
-        return (x_train, y_train), (x_test, y_test)
+        #(x_train, y_train), (x_test, y_test) = fashion_mnist.load_data()
+        #return (x_train, y_train), (x_test, y_test)
+
+        train, test = fashion_mnist.load_data()
+        # concatenate train & test
+        x = np.stack([*train[0], *test[0]])
+        y = np.stack([*train[1], *test[1]])
+
+        # reshape
+        x = x.reshape(x.shape[0], 28, 28, 1)
+        y = to_categorical(y)
+
+        def dataset_generator():
+            for i in range(x.shape[0]):
+                yield x[i], y[i]
+
+        return dataset_generator
 
     @staticmethod
     def from_csv(path: str):
-        # use pandas to read a csv file
+        # DONE : use pandas to read a csv file
         # https://pandas.pydata.org/pandas-docs/stable/generated/pandas.read_csv.html
-        import pandas as pd
-        data = pd.read_csv('../resources/dataset.csv')
+        data = pandas.read_csv('../resources/dataset.csv')
         return data
 
     @staticmethod
     def split_dataset(x: np.ndarray, y: np.ndarray, test_size=0.1):
         assert x.shape[0] == y.shape[0]
-        # use sklearn.train_test_split to split a dataset in two datasets (training and validation)
+        # DONE : use sklearn.train_test_split to split a dataset in two datasets (training and validation)
         # https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.train_test_split.html
 
         x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=test_size, random_state=None)
@@ -120,8 +133,6 @@ class DataPreparation(object):
 
     @staticmethod
     def normalize(array: np.ndarray) -> np.ndarray:
-        from sklearn import preprocessing
-        import numpy as np
-        # rescale numpy array to feat normal distribution
+        # DONE : rescale numpy array to feat normal distribution
         # https://scikit-learn.org/stable/modules/preprocessing.html#preprocessing
         return preprocessing.scale(array, axis=1)

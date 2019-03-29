@@ -42,7 +42,7 @@ class Models(object):
     def load_model(path: str):
         filename = os.path.join(path, 'model.h5')
 
-        # use keras to load the model from its path
+        # DONE : use keras to load the model from its path
         # https://keras.io/getting-started/faq/#how-can-i-save-a-keras-model
         loaded_model = load_model(filename)
 
@@ -59,7 +59,7 @@ class Models(object):
     def create(input_shape: Tuple[int, int, int], num_classes: int):
         model = Sequential([
             Lambda(lambda x: x, input_shape=input_shape),
-            #  TODO: use Convolutional Neural Network (Conv2D) to boost the training
+            # TODO : use Convolutional Neural Network (Conv2D) to boost the training
             # ---> https://keras.io/layers/convolutional/
 
             Conv2D(filters=8, kernel_size=(3, 3), padding='same'),
@@ -71,10 +71,10 @@ class Models(object):
             Dense(units=8),
             Activation(activation='relu'),
 
-            # TODO: use batch normalization here, just before the final layer
+            # TODO : use batch normalization here, just before the final layer
             # ---> https://keras.io/layers/normalization/
 
-            # BatchNormalization(),
+            BatchNormalization(),
 
             Dense(units=num_classes, activation='softmax')
         ])
@@ -108,5 +108,4 @@ class Models(object):
 
         # TODO: use model.predict(x) to predict on x
         # --> https://keras.io/models/model/#predict
-
-        raise NotImplementedError()
+        return model.predict(x)

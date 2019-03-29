@@ -58,6 +58,8 @@ def test_confusion_matrix():
     for i in range(yy.shape[0]):
         if expected[i] != predictions[i]:
             print('expected: {} actual: {}'.format(expected[i], predictions[i]))
-            errors.append((x[i], predictions[i]))
+            #errors.append((x[i], predictions[i]))
+        errors.append((x[i], '{} {}'.format(expected[i], predictions[i])))
     errors = errors[:100]
     show_samples(errors, 10, 10)
+

@@ -4,7 +4,7 @@ from exercices.dataset import *
 
 
 def test_dataset_loading():
-    (x_train, y_train), (x_test, y_test) = Datasets.fashion_mnist()
+    (x_train, y_train), (x_test, y_test) = Datasets.mnist()
 
     assert len(x_train) == len(y_train)
     assert len(x_test) == len(y_test)
@@ -46,7 +46,7 @@ def test_normalization():
 
 
 def test_dataset_split():
-    (_, _), (x, y) = Datasets.fashion_mnist()
+    (_, _), (x, y) = Datasets.mnist()
     (x_train, x_val), (y_train, y_val) = Datasets.split_dataset(x, y)
 
     assert x_train.shape == (9000, 28, 28)

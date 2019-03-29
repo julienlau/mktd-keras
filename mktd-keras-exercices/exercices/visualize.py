@@ -24,27 +24,45 @@ def show_samples(samples: List[Tuple[Any, Any]], nrows=1, ncols=1):
     plt.show(block=True)
 
 
+def show_samples_with_label(samples: List[Tuple[Any, Any]], nrows=1, ncols=1):
+    fig, axeslist = plt.subplots(ncols=ncols, nrows=nrows, figsize=(10, 10))
+    for ind, (x, y) in enumerate(samples):
+        try:
+            title = str(np.argmax(y)) if y.size > 1 else y
+        except:
+            title = str(y)
+        try:
+            target = str(np.argmax(x)) if x.size > 1 else x
+        except:
+            target = str(x)
+        axeslist.ravel()[ind].imshow(x.squeeze(), cmap=plt.jet())
+        axeslist.ravel()[ind].set_title(target + ' ' + title)
+        axeslist.ravel()[ind].set_axis_off()
+    plt.tight_layout()  # optional
+    plt.show(block=True)
+
+
 def show_hist(image: np.ndarray):
     plt.hist(image.ravel(), bins=256, range=(0.0, 1.0), fc='k', ec='k')
 
 
 def show_confusion_matrix(expected, predictions):
-    #  TODO: compute confusion matrix
+    #  DONE: compute confusion matrix
     # ---> https://scikit-learn.org/stable/auto_examples/model_selection/plot_confusion_matrix.html
 
-    # cm = confusion_matrix(expected, predictions)
-    # cm = cm.astype('float') / cm.sum(axis=1)[:, np.newaxis]
-    # # Show confusion matrix in a separate window
-    # plt.matshow(cm)
-    # plt.title('Confusion matrix')
-    # plt.colorbar()
-    # plt.ylabel('True label')
-    # plt.xlabel('Predicted label')
-    # plt.show()
-    #
-    # return cm
+    cm = confusion_matrix(expected, predictions)
+    cm = cm.astype('float') / cm.sum(axis=1)[:, np.newaxis]
+    # Show confusion matrix in a separate window
+    plt.matshow(cm)
+    plt.title('Confusion matrix')
+    plt.colorbar()
+    plt.ylabel('True label')
+    plt.xlabel('Predicted label')
+    plt.show()
 
-    raise NotImplementedError()
+    return cm
+
+    # raise NotImplementedError()
 
 
 def show_history(history):

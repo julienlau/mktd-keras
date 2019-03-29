@@ -28,7 +28,7 @@
 
 ## [Default datasets](https://keras.io/datasets/)
 - CIFAR10 : 50k (32,32) images on 10 categories
-- MNIST: 60k (28,28) images of hand written digits
+- mnisMNIST: 60k (28,28) images of hand written digits
 
 
 # Optimization
