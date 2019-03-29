@@ -5,18 +5,19 @@ import tensorflow as tf
 from werkzeug.utils import secure_filename
 
 from exercices.models import Models
+import keras
 
 app = Flask(__name__)
 
 
 # Flask / Tensorflow fix
 # https://towardsdatascience.com/deploying-keras-deep-learning-models-with-flask-5da4181436a2
-# global graph
-# graph = tf.get_default_graph()
-# print('preload model ...')
-# model = Models.load_model('../resources/model')
-# assert isinstance(model, keras.models.Model)
-# print('model is ready !')
+global graph
+graph = tf.get_default_graph()
+print('preload model ...')
+model = Models.load_model('../resources/model')
+assert isinstance(model, keras.models.Model)
+print('model is ready !')
 
 
 @app.route("/process", methods=['POST'])

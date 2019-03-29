@@ -11,7 +11,7 @@ from exercices.models import Models
 # define dataset
 # TODO: modify the path to the dataset folder
 dataset_path = 'path/to/dataset/10-monkey-species'  # https://www.kaggle.com/slothkong/10-monkey-species
-dataset_path = 'D:\\Datasets\\10-monkey-species'
+dataset_path = '/home/jlu/data/10-monkey-species'
 train_path = os.path.join(dataset_path, 'training')
 test_path = os.path.join(dataset_path, 'validation')
 
