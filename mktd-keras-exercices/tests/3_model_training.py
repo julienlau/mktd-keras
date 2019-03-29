@@ -7,7 +7,8 @@ from keras.preprocessing.image import ImageDataGenerator
 from exercices.dataset import Datasets
 from exercices.models import Models
 
-model_path = '../resources/model'
+# model_path = '../resources/model'
+model_path = './my_model'
 
 
 def test_create_model():
@@ -87,8 +88,7 @@ def test_convolutional_network():
 
 
 def dataset_preparation():
-    # fashion_mnist or mnist ???
-    sample_provider = Datasets.mnist()
+    sample_provider = Datasets.fashion_mnist()
     x = [_[0] for _ in sample_provider()]
     y = [_[1] for _ in sample_provider()]
 

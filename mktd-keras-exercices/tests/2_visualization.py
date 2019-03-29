@@ -6,7 +6,7 @@ import pandas
 
 
 def test_show_images():
-    sample_provider = Datasets.mnist()
+    sample_provider = Datasets.fashion_mnist()
 
     samples = [_ for _ in sample_provider()]
     samples = shuffle(samples, n_samples=25)

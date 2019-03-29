@@ -5,11 +5,11 @@ from exercices.dataset import Datasets
 from exercices.models import Models
 from exercices.visualize import show_confusion_matrix, show_image, show_samples
 
-model_path = '../resources/model'
-
+# model_path = '../resources/model'
+model_path = './my_model'
 
 def get_image():
-    generator = Datasets.mnist()()
+    generator = Datasets.fashion_mnist()()
     x, y = next(generator)
     return x
 
@@ -25,7 +25,7 @@ def test_predict_once():
 
 
 def test_confusion_matrix():
-    sample_provider = Datasets.mnist()
+    sample_provider = Datasets.fashion_mnist()
     x = np.array([_[0] for _ in sample_provider()])
     y = np.array([_[1] for _ in sample_provider()])
 
